@@ -38,13 +38,14 @@ module.exports = {
 
 ## Options
 
-|             Name                        |    Type     | Description                                                                      |
-| :-------------------------------------: | :---------: | :------------------------------------------------------------------------------: |
-|         **[`banner`](#banner)**         | `{String}`  | To add a 'banner' prefix to each generated `*.d.ts` file                         |
-|      **[`formatter`](#formatter)**      | `{String}`  | Formats the generated `*.d.ts` file with specified formatter, eg. `prettier`     |
-|            **[`eol`](#eol)**            | `{String}`  | Newline character to be used in generated `*.d.ts` files                         |
-|     **[`verifyOnly`](#verifyOnly)**     | `{Boolean}` | Validate generated `*.d.ts` files and fail if an update is needed (useful in CI) |
-|     **[`disableLocalsExport`](#disableLocalsExport)**     | `{Boolean}` | Disable the use of locals export. |
+|                       Name                        |    Type     |                         Description                          |
+| :-----------------------------------------------: | :---------: | :----------------------------------------------------------: |
+|              **[`banner`](#banner)**              | `{String}`  |   To add a 'banner' prefix to each generated `*.d.ts` file   |
+|           **[`formatter`](#formatter)**           | `{String}`  | Formats the generated `*.d.ts` file with specified formatter, eg. `prettier` |
+|                 **[`eol`](#eol)**                 | `{String}`  |   Newline character to be used in generated `*.d.ts` files   |
+|          **[`verifyOnly`](#verifyOnly)**          | `{Boolean}` | Validate generated `*.d.ts` files and fail if an update is needed (useful in CI) |
+| **[`disableLocalsExport`](#disableLocalsExport)** | `{Boolean}` |              Disable the use of locals export.               |
+|           **[`configFile`](#configFile)**         | `{String}`  |                 Path to prettier config file                 |
 
 ### `banner`
 
@@ -187,6 +188,35 @@ module.exports = {
   }
 };
 ```
+
+### `configFile`
+
+Path to the prettier config file
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [
+          {
+            loader: "@teamsupercell/typings-for-css-modules-loader",
+            options: {
+              configFile: resolve(__dirname, '../.prettierrc'),
+            }
+          },
+          {
+            loader: "css-loader",
+            options: { modules: true }
+          }
+        ]
+      }
+    ]
+  }
+};
+```
+
 
 
 ## Example
